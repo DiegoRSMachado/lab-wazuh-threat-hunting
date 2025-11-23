@@ -21,6 +21,12 @@ O SIEM detectou o ataque instantaneamente. Como evidenciado no relatório anexo:
 * **12** alertas críticos de **Brute Force** confirmados (`Rule 5763`).
 * Classificação automática do incidente baseada no framework **MITRE ATT&CK**.
 
+### 🛡️ Recomendação de Mitigação (Blue Team)
+Para prevenir este tipo de ataque no futuro, recomendo as seguintes medidas de Hardening:
+1. **Desabilitar Login Root:** Editar `/etc/ssh/sshd_config` e definir `PermitRootLogin no`.
+2. **Autenticação via Chaves:** Substituir senhas por chaves SSH (SSH Key-Pair).
+3. **Bloqueio Automático:** Implementar **Fail2Ban** ou configurar o **Active Response** do Wazuh para bloquear o IP do atacante após 5 tentativas falhas.
+
 ![Relatorio Wazuh](relatorio-bruteforce.png)
 
 ### 🛠️ Tecnologias
