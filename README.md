@@ -6,7 +6,7 @@ O objetivo foi realizar um ataque de **Força Bruta (Brute Force)** contra um se
 
 ### 🏗️ Arquitetura do Laboratório
 * **Atacante (Red Team):** Kali Linux rodando em VM (Modo Bridge). Ferramenta: `Hydra`.
-* **Vítima/Defensor (Blue Team):** Servidor Ubuntu Físico monitorado por Agente Wazuh.
+* **Vítima/Defensor (Blue Team):** Servidor Ubuntu Físico monitorado por Agente Wazuh (Endpoint).
 * **SIEM:** Wazuh Server (Manager, Indexer e Dashboard).
 
 ### ⚔️ Execução do Ataque
@@ -16,10 +16,12 @@ hydra -l root -P rockyou.txt ssh://192.168.1.103 -t 4
 ```
 
 ### 🚨 Análise e Detecção (Resultados)
-O SIEM detectou o ataque instantaneamente, gerando **960 alertas** de falha de autenticação em menos de 2 minutos.
-Como mostrado no dashboard abaixo, o Wazuh correlacionou os eventos e classificou a técnica como **Brute Force** e **Password Guessing** baseada no framework **MITRE ATT&CK**.
+O SIEM detectou o ataque instantaneamente. Como evidenciado no relatório anexo:
+* **912** eventos de falha de autenticação (`Rule 5760`).
+* **12** alertas críticos de **Brute Force** confirmados (`Rule 5763`).
+* Classificação automática do incidente baseada no framework **MITRE ATT&CK**.
 
-![Dashboard Wazuh Brute Force](dashboard-ataque-bruteforce.png)
+![Relatorio Wazuh](relatorio-bruteforce.png)
 
 ### 🛠️ Tecnologias
 * Wazuh SIEM & XDR
